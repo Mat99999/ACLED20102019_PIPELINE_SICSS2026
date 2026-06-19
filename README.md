@@ -30,7 +30,6 @@ acled-spatiotemporal-conflict-model/
     tables/
     figures/
     panels/
-  docs/
 ```
 
 ## Quick start: local computer
