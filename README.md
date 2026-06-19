@@ -75,7 +75,7 @@ If you use VSCode, open the repository folder and run the notebook with the envi
 
 Open the notebook in Colab: https://colab.research.google.com/github/Mat99999/acled-spatiotemporal-conflict-model/blob/main/notebooks/acled_spatiotemporal_grid_model.ipynb
 
-The notebook is designed to avoid hard-coded local file paths. Once this repository is on GitHub, you can open `notebooks/acled_spatiotemporal_grid_model.ipynb` in Colab. If the notebook is opened directly from GitHub and the project files are not present in the Colab runtime, the setup cell can clone the repository automatically the setup cell clones this repository automatically.
+The notebook is designed to avoid hard-coded local file paths. Once this repository is on GitHub, you can open `notebooks/acled_spatiotemporal_grid_model.ipynb` in Colab. If the notebook is opened directly from GitHub and the project files are not present in the Colab runtime, the setup cell clones this repository automatically.
 
 ## Notebook
 
