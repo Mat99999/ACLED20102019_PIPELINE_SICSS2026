@@ -1,0 +1,3 @@
+feature,standardized_logit_coefficient,odds_ratio_per_1sd,hypothesis
+neighbor_nonfatal_protests,-0.009049347390336573,0.9909914747231265,H3_neighbor_nonfatal_vs_fatal_spillover
+neighbor_fatal_protests,-0.0156483917566759,0.9844734081736491,H3_neighbor_nonfatal_vs_fatal_spillover
