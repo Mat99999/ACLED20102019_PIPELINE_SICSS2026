@@ -15,10 +15,11 @@ How do protests spread over time and space in Africa?
 ## Main setup
 
 - Unit of analysis: grid-cell x month
-- Main grid: 100 x 100 km
-- Robustness grids: 50 x 50 km and 200 x 200 km
-- Training period: 2000-2015
-- Test period: 2016-2020
+- Main grid: independent African land grid at 100 x 100 km, built from Natural Earth country boundaries
+- Optional robustness grids: 50 x 50 km and 200 x 200 km
+- Training target period: 2000-2012
+- Validation target period: 2013-2015, used for model and threshold choices
+- Final test target period: 2016-2020
 - Main target: whether a grid cell has at least one protest event next month
 - Main model family: logistic regression, with random forest used as a predictive benchmark
 
@@ -30,6 +31,7 @@ acled-spatiotemporal-conflict-model/
   requirements.txt
   data/
     new data/
+      comprehensive protest data.csv
       Protest_2000_2015_train.csv
       Protest_2016_2020_test.csv
     old data/
@@ -83,21 +85,22 @@ If you use VSCode, open the repository folder and run the notebook with the envi
 
 Open the notebook in Colab: https://colab.research.google.com/github/Mat99999/acled-spatiotemporal-conflict-model/blob/main/notebooks/acled_spatiotemporal_grid_model.ipynb
 
-The notebook is designed to avoid hard-coded local file paths. Once this repository is on GitHub, you can open `notebooks/acled_spatiotemporal_grid_model.ipynb` in Colab. If the notebook is opened directly from GitHub and the project files are not present in the Colab runtime, the setup cell clones this repository automatically and reads the two split CSV files in `data/new data/`.
+The notebook is designed to avoid hard-coded local file paths. Once this repository is on GitHub, you can open `notebooks/acled_spatiotemporal_grid_model.ipynb` in Colab. If the notebook is opened directly from GitHub and the project files are not present in the Colab runtime, the setup cell clones this repository automatically and reads `data/new data/comprehensive protest data.csv`.
 
 ## Notebook
 
 `notebooks/acled_spatiotemporal_grid_model.ipynb` is the main research notebook. It:
 
-1. Loads and validates the ACLED protest training and test CSV files.
-2. Builds approximate kilometer-based grid cells.
+1. Loads and validates the comprehensive ACLED protest CSV.
+2. Builds an independent African land grid using Natural Earth boundaries.
 3. Aggregates ACLED protest events into a cell-month panel.
 4. Creates local lag features and neighboring-cell protest features.
-5. Trains and tests logistic regression and random forest models.
-6. Compares local-history models against local-plus-neighbor models.
-7. Adds fatal versus nonfatal neighboring-protest features for H3.
-8. Adds threshold, precision-at-top-k, PR curve, calibration, and robustness diagnostics.
-9. Saves outputs and displays the main charts inline.
+5. Uses 2000-2012 for training, 2013-2015 for validation, and 2016-2020 for the final test.
+6. Trains and tests logistic regression and random forest models.
+7. Compares local-history models against local-plus-neighbor models.
+8. Adds formal fatal versus nonfatal neighboring-protest diagnostics for H3.
+9. Adds ranking, PR curve, calibration, map-like, and optional robustness diagnostics.
+10. Saves outputs and displays the main charts inline.
 
 ## Generated outputs
 
@@ -106,16 +109,18 @@ The notebook is designed to avoid hard-coded local file paths. Once this reposit
 - `01_data_summary.csv`: basic dataset summary.
 - `02_event_types.csv`: event counts by ACLED event type.
 - `02b_protest_sub_event_types.csv`: event counts by protest subtype.
-- `02c_train_test_split_summary.csv`: row counts and basic split diagnostics.
+- `02c_analysis_periods.csv`: training, validation, and final-test event counts.
 - `03_panel_100km_summary.csv`: summary of the 100 km cell-month panel.
-- `04_model_results_100km.csv`: main test metrics for the 100 km models.
+- `04a_model_results_100km_validation.csv`: validation metrics for model development.
+- `04b_model_results_100km_final_test.csv`: final test metrics for the 100 km models.
 - `05_feature_set_comparison_100km.csv`: comparison of feature sets A-E.
-- `07_robustness_50_100_200km.csv`: robustness results across grid sizes.
-- `08_f1_optimal_thresholds_100km.csv`: F1-optimal thresholds and associated metrics.
-- `09_precision_at_top_k_100km.csv`: precision and lift among top-risk cell-months.
+- `07_robustness_50_100_200km_validation.csv`: optional validation-period robustness results across grid sizes.
+- `08_validation_selected_thresholds_final_test.csv`: final-test threshold metrics using validation-selected thresholds.
+- `09_precision_at_top_k_final_test.csv`: precision and lift among top-risk cell-months.
 - `10_neighbor_uplift_B_vs_C_100km.csv`: direct comparison of local-history versus local-plus-neighbor models.
 - `11_calibration_bins_100km.csv`: calibration-bin table used for calibration curves.
-- `12_h3_neighbor_fatality_spillover_100km.csv`: standardized logit coefficients comparing neighboring nonfatal and fatal protest spillovers.
+- `12a_h3_coefficients_100km.csv`: H3 coefficients comparing neighboring nonfatal and fatal protest spillovers.
+- `12b_h3_wald_test_100km.csv`: formal Wald test for the H3 neighbor-coefficient contrast.
 
 ### `outputs/figures/`
 
@@ -131,7 +136,8 @@ The notebook is designed to avoid hard-coded local file paths. Once this reposit
 ### `outputs/panels/`
 
 - `panel_100km_month.csv`: generated 100 km cell-month modeling panel.
-- `predictions_100km_test.csv`: test predictions for selected 100 km models.
+- `predictions_100km_validation.csv`: validation predictions for selected 100 km models.
+- `predictions_100km_final_test.csv`: final-test predictions for selected 100 km models.
 - `06_test_risk_map_100km.csv`: observed and predicted test risk by grid cell.
 
 ## Notes
