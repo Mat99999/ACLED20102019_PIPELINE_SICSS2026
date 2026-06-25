@@ -87,6 +87,10 @@ Open the notebook in Colab: https://colab.research.google.com/github/Mat99999/ac
 
 The notebook is designed to avoid hard-coded local file paths. Once this repository is on GitHub, you can open `notebooks/acled_spatiotemporal_grid_model.ipynb` in Colab. If the notebook is opened directly from GitHub and the project files are not present in the Colab runtime, the setup cell clones this repository automatically and reads `data/new data/comprehensive protest data.csv`.
 
+The default Colab run uses `ROBUSTNESS_MODE = "quick"`. This still runs the 25, 50, and 100 km robustness check, but only for the core random forest B/C/D feature sets and it reuses the already fitted 50 km validation results. Set `ROBUSTNESS_MODE = "full"` for the complete Logit plus random forest robustness table, or `ROBUSTNESS_MODE = "skip"` to run only the main 50 km analysis.
+
+Large generated panel and prediction CSVs are not written by default in Colab. Set `SAVE_LARGE_OUTPUTS = True` only when those files are needed locally.
+
 ## Notebook
 
 `notebooks/acled_spatiotemporal_grid_model.ipynb` is the main research notebook. It:
@@ -99,7 +103,7 @@ The notebook is designed to avoid hard-coded local file paths. Once this reposit
 6. Trains and tests logistic regression and random forest models.
 7. Compares local-history models against local-plus-neighbor models.
 8. Adds formal fatal versus nonfatal neighboring-protest diagnostics for H3.
-9. Adds ranking, PR curve, calibration, map-like, and optional robustness diagnostics.
+9. Adds ranking, PR curve, calibration, map-like, and robustness diagnostics.
 10. Saves outputs and displays the main charts inline.
 
 ## Generated outputs
@@ -114,7 +118,7 @@ The notebook is designed to avoid hard-coded local file paths. Once this reposit
 - `04a_model_results_50km_validation.csv`: validation metrics for model development.
 - `04b_model_results_50km_final_test.csv`: final test metrics for the 50 km models.
 - `05_feature_set_comparison_50km.csv`: comparison of feature sets A-E.
-- `07_robustness_25_50_100km_validation.csv`: validation-period robustness results across grid sizes.
+- `07_robustness_25_50_100km_validation.csv`: validation-period robustness results across grid sizes. By default this is the faster random forest robustness table; set `ROBUSTNESS_MODE = "full"` in the notebook for the complete Logit plus random forest version.
 - `08_validation_selected_thresholds_final_test.csv`: final-test threshold metrics using validation-selected thresholds.
 - `09_precision_at_top_k_final_test.csv`: precision and lift among top-risk cell-months.
 - `10_neighbor_uplift_B_vs_C_final_test.csv`: direct comparison of local-history versus local-plus-neighbor models.
