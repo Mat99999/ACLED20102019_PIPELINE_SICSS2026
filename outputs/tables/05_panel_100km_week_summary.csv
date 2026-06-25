@@ -1,0 +1,8 @@
+metric,value
+grid_km,100.0
+cell_weeks,799704.0
+cells,1532.0
+weeks,522.0
+target_protest_share,0.0297
+target_riot_share,0.016
+mean_protests_when_positive,1.6

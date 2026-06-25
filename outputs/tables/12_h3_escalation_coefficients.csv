@@ -1,0 +1,7 @@
+feature,standardized_logit_coefficient,odds_ratio_per_1sd,protest_type,window
+peaceful_protests_hist_1w,0.18169103076943546,1.1992436072582906,peaceful,1w
+peaceful_protests_hist_2w,-0.045898195697192286,0.9551391945210784,peaceful,2w
+peaceful_protests_hist_4w,0.19022630338875346,1.209523285906171,peaceful,4w
+nonpeaceful_protests_hist_1w,0.01286977063981422,1.0129529425561468,nonpeaceful,1w
+nonpeaceful_protests_hist_2w,0.051974789462154905,1.0533491866790878,nonpeaceful,2w
+nonpeaceful_protests_hist_4w,-0.022118183778524987,0.9781246297553964,nonpeaceful,4w
