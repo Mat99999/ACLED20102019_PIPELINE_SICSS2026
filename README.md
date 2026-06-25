@@ -117,7 +117,7 @@ The notebook is designed to avoid hard-coded local file paths. Once this reposit
 - `07_robustness_50_100_200km_validation.csv`: optional validation-period robustness results across grid sizes.
 - `08_validation_selected_thresholds_final_test.csv`: final-test threshold metrics using validation-selected thresholds.
 - `09_precision_at_top_k_final_test.csv`: precision and lift among top-risk cell-months.
-- `10_neighbor_uplift_B_vs_C_100km.csv`: direct comparison of local-history versus local-plus-neighbor models.
+- `10_neighbor_uplift_B_vs_C_final_test.csv`: direct comparison of local-history versus local-plus-neighbor models.
 - `11_calibration_bins_100km.csv`: calibration-bin table used for calibration curves.
 - `12a_h3_coefficients_100km.csv`: H3 coefficients comparing neighboring nonfatal and fatal protest spillovers.
 - `12b_h3_wald_test_100km.csv`: formal Wald test for the H3 neighbor-coefficient contrast.
@@ -125,6 +125,7 @@ The notebook is designed to avoid hard-coded local file paths. Once this reposit
 ### `outputs/figures/`
 
 - `events_per_month.png`: monthly ACLED protest event counts.
+- `africa_land_grid_100km.png`: map-like diagnostic of the 100 km African land grid.
 - `panel_diagnostics_100km.png`: panel activity and event distribution diagnostics.
 - `model_average_precision_100km.png`: model comparison by average precision.
 - `observed_vs_predicted_risk_map_100km.png`: map-like test-period sanity check.
