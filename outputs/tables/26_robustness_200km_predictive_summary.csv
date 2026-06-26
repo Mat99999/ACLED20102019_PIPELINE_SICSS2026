@@ -1,0 +1,5 @@
+grid_km,hypothesis,robustness_result,evidence
+200,H1A spatial diffusion,Supported,Adding neighboring protest histories improves average precision over focal temporal history in the random forest.
+200,H1B temporal diffusion,Supported,Adding focal protest histories improves average precision over place/time features in the random forest.
+200,H2 peaceful diffusion,Partially supported,Peaceful coefficient exceeds non-peaceful coefficient in 4 of 6 focal/neighbor history contrasts.
+200,H3 protest escalation,Partially supported,Adding non-peaceful histories improves average precision in 3/3 logistic and 1/3 random-forest horizons.

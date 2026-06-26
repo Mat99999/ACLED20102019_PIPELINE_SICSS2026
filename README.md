@@ -40,8 +40,10 @@ acled_protests_riots_2010_2019_pipeline/
   notebooks/
     acled_protests_riots_weekly_pipeline.ipynb
     acled_h1a_h1b_h2_h3_inferential_support.ipynb
+    acled_200km_predictive_robustness.ipynb
   scripts/
     inferential_tests_h1a_h1b_h2_h3.py
+    robustness_200km_predictive_models.py
   outputs/
     tables/
     figures/
@@ -97,6 +99,25 @@ python scripts/inferential_tests_h1a_h1b_h2_h3.py
 
 The inferential tests are intended as supporting evidence for the main predictive analysis. They estimate logistic models with two-way cluster-robust standard errors by grid cell and week. The revised H3 model uses the focal cell plus the eight neighboring 100 x 100 km cells and does not restrict neighboring cells by country.
 
+## Predictive Robustness Check: 200 x 200 km Grid Cells
+
+The main predictive analysis uses 100 x 100 km grid cells. As a spatial-scale robustness check, run:
+
+```bash
+python scripts/robustness_200km_predictive_models.py
+```
+
+The robustness check keeps the same historical split as the main pipeline: train on 2010-2017 and test on 2018-2019. It reruns the predictive H1A, H1B, H2, and revised no-country H3 analyses using 200 x 200 km grid cells. For H3, escalation is defined as riot occurrence in the focal 200 x 200 km grid cell or one of the eight neighboring 200 x 200 km cells over subsequent 1-week, 2-week, and 4-week windows.
+
+The Colab version is `notebooks/acled_200km_predictive_robustness.ipynb`.
+
+Current 200 km robustness results:
+
+- H1A spatial diffusion: supported. Neighboring protest histories improve average precision over focal temporal histories.
+- H1B temporal diffusion: supported. Focal protest histories improve average precision over place/time features.
+- H2 peaceful diffusion: partially supported. Peaceful coefficients exceed non-peaceful coefficients in 4 of 6 focal/neighbor history contrasts.
+- H3 protest escalation: partially supported. Adding non-peaceful histories improves average precision in all 3 logistic horizons and 1 of 3 random-forest horizons.
+
 ## Key Generated Outputs
 
 ### `outputs/tables/`
@@ -118,6 +139,15 @@ The inferential tests are intended as supporting evidence for the main predictiv
 - `15_h2_inferential_1_2_4_week.csv`: H2 peaceful-minus-non-peaceful inferential contrasts.
 - `16_h3_grid_no_country_inferential_1_2_4_week.csv`: revised H3 grid-based inferential results with no same-country restriction.
 - `17_inferential_model_formulas_1_2_4_week.csv`: model formulas used for the inferential tests.
+- `18_robustness_200km_panel_summary.csv`: summary of the 200 km grid-cell-week robustness panel.
+- `19_robustness_200km_h1_h2_model_results.csv`: H1/H2 200 km test-period predictive model results.
+- `20_robustness_200km_h1_uplift.csv`: H1A/H1B average-precision and ROC-AUC uplift under 200 km cells.
+- `21_robustness_200km_h2_coefficients.csv`: standardized H2 logistic coefficients under 200 km cells.
+- `22_robustness_200km_h2_direction_summary.csv`: H2 peaceful-vs-non-peaceful coefficient contrasts under 200 km cells.
+- `23_robustness_200km_h3_no_country_model_results.csv`: revised no-country H3 200 km predictive model results.
+- `24_robustness_200km_h3_nonpeaceful_uplift.csv`: predictive gain from adding non-peaceful histories for H3 under 200 km cells.
+- `25_robustness_200km_h3_nonpeaceful_coefficients.csv`: standardized H3 logistic coefficients under 200 km cells.
+- `26_robustness_200km_predictive_summary.csv`: compact robustness conclusion table for H1A, H1B, H2, and H3.
 
 ### `outputs/figures/`
 
@@ -134,6 +164,9 @@ The inferential tests are intended as supporting evidence for the main predictiv
 - `predictions_100km_week_test.csv`: H1/H2 test predictions.
 - `country_week_riot_escalation_panel.csv`: original H3 country-week panel.
 - `country_week_riot_predictions_test.csv`: original H3 test predictions.
+- `panel_200km_week.csv.gz`: 200 km grid-cell-week robustness panel.
+- `predictions_200km_week_test.csv`: H1/H2 200 km test predictions.
+- `predictions_200km_h3_no_country_test.csv`: revised no-country H3 200 km test predictions.
 
 ## Notes
 

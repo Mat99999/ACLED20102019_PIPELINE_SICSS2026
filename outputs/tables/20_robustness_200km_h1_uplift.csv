@@ -1,0 +1,3 @@
+grid_km,model,delta_ap_temporal_minus_place_time,delta_ap_spatial_minus_temporal,delta_auc_temporal_minus_place_time,delta_auc_spatial_minus_temporal
+200,Logistic regression,0.3564260373438217,0.006081205287701619,0.21113530380554113,0.020447707365664147
+200,Random forest,0.09655445793998935,0.002729247869531881,0.031275795514477234,0.0009839113771439312

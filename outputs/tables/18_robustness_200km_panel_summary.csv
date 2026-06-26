@@ -1,0 +1,9 @@
+metric,value
+grid_km,200.0
+cell_weeks,334080.0
+cells,640.0
+weeks,522.0
+target_protest_next_week_share,0.060835727969348656
+target_local_riot_1w_share,0.19658764367816092
+target_local_riot_2w_share,0.2938819577735125
+target_local_riot_4w_share,0.4137734826589595
