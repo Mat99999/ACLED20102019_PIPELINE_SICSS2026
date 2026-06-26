@@ -1,0 +1,10 @@
+metric,value
+grid_km,100
+cell_weeks,799704
+cells,1532
+weeks,522
+target_local_riot_1w_share,0.09659070977182863
+target_local_riot_2w_share,0.156277615987146
+target_local_riot_4w_share,0.2394931298325554
+train_period,2010-2017
+test_period,2018-2019

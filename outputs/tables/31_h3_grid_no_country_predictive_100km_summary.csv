@@ -1,0 +1,2 @@
+grid_km,hypothesis,predictive_result,evidence
+100,H3 protest escalation,Supported,Adding non-peaceful histories improves average precision in 3/3 logistic and 3/3 random-forest horizons.

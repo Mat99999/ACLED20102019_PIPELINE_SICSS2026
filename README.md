@@ -40,9 +40,11 @@ acled_protests_riots_2010_2019_pipeline/
   notebooks/
     acled_protests_riots_weekly_pipeline.ipynb
     acled_h1a_h1b_h2_h3_inferential_support.ipynb
+    acled_h3_grid_no_country_predictive_100km.ipynb
     acled_200km_predictive_robustness.ipynb
   scripts/
     inferential_tests_h1a_h1b_h2_h3.py
+    predictive_h3_grid_no_country_100km.py
     robustness_200km_predictive_models.py
   outputs/
     tables/
@@ -88,6 +90,27 @@ The notebook avoids hard-coded local paths and expects the dataset to be inside 
 9. Saves tables, panels, and figures under `outputs/`.
 
 The companion inferential script/notebook tests H1A, H1B, H2, and the revised grid-based H3 across matched 1-week, 2-week, and 4-week future windows.
+
+## Revised H3 Predictive Model: 100 x 100 km Grid Cells, No Country Restriction
+
+The original main notebook includes a country-week H3 predictive baseline. The revised main H3 predictive specification is implemented separately so it matches the updated hypothesis:
+
+```bash
+python scripts/predictive_h3_grid_no_country_100km.py
+```
+
+The Colab version is `notebooks/acled_h3_grid_no_country_predictive_100km.ipynb`.
+
+This revised H3 predictive model uses:
+
+- Unit: 100 x 100 km grid-cell x week
+- Outcome: at least one riot in the focal cell or eight neighboring cells in the next 1, 2, or 4 weeks
+- No same-country restriction
+- Train period: 2010-2017
+- Test period: 2018-2019
+- Models: logistic regression and random forest
+
+Current revised H3 predictive result: supported. Adding non-peaceful protest histories improves average precision in all 3 logistic-regression horizons and all 3 random-forest horizons.
 
 ## Revised Inferential Tests
 
@@ -148,6 +171,11 @@ Current 200 km robustness results:
 - `24_robustness_200km_h3_nonpeaceful_uplift.csv`: predictive gain from adding non-peaceful histories for H3 under 200 km cells.
 - `25_robustness_200km_h3_nonpeaceful_coefficients.csv`: standardized H3 logistic coefficients under 200 km cells.
 - `26_robustness_200km_predictive_summary.csv`: compact robustness conclusion table for H1A, H1B, H2, and H3.
+- `27_h3_grid_no_country_predictive_100km_panel_summary.csv`: revised 100 km H3 grid-cell-week panel summary.
+- `28_h3_grid_no_country_predictive_100km_model_results.csv`: revised 100 km no-country H3 predictive model results.
+- `29_h3_grid_no_country_predictive_100km_nonpeaceful_uplift.csv`: predictive gain from adding non-peaceful histories for revised 100 km H3.
+- `30_h3_grid_no_country_predictive_100km_nonpeaceful_coefficients.csv`: standardized revised 100 km H3 logistic coefficients for non-peaceful histories.
+- `31_h3_grid_no_country_predictive_100km_summary.csv`: compact revised 100 km H3 predictive conclusion.
 
 ### `outputs/figures/`
 
@@ -164,6 +192,7 @@ Current 200 km robustness results:
 - `predictions_100km_week_test.csv`: H1/H2 test predictions.
 - `country_week_riot_escalation_panel.csv`: original H3 country-week panel.
 - `country_week_riot_predictions_test.csv`: original H3 test predictions.
+- `predictions_100km_h3_grid_no_country_test.csv`: revised 100 km no-country H3 test predictions.
 - `panel_200km_week.csv.gz`: 200 km grid-cell-week robustness panel.
 - `predictions_200km_week_test.csv`: H1/H2 200 km test predictions.
 - `predictions_200km_h3_no_country_test.csv`: revised no-country H3 200 km test predictions.
@@ -172,4 +201,4 @@ Current 200 km robustness results:
 
 This is a predictive and descriptive design, not a causal identification strategy. Evidence that history or neighboring-cell features improve prediction should be interpreted as evidence of predictive temporal or spatial clustering in ACLED event data, not proof that one protest causes another event.
 
-The original predictive notebook includes a country-week H3 model. The revised inferential H3 analysis instead uses a grid-cell-week local-neighborhood definition with no same-country restriction. Results should be interpreted as observational associations rather than causal effects.
+The original predictive notebook includes a country-week H3 model as a legacy baseline. The revised H3 predictive and inferential analyses use a grid-cell-week local-neighborhood definition with no same-country restriction. Results should be interpreted as observational associations rather than causal effects.
