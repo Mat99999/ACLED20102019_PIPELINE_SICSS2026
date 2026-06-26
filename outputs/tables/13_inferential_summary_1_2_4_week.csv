@@ -1,0 +1,5 @@
+hypothesis,supported_tests,total_tests,overall_inferential_conclusion
+H1A spatial diffusion,3,3,Supported
+H1B temporal diffusion,3,3,Supported
+H2 peaceful diffusion,6,6,Supported
+H3 protest escalation,3,3,Supported

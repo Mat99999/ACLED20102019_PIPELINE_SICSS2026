@@ -1,0 +1,10 @@
+horizon,model,formula
+1,H1A/H1B,target_protest_1w ~ log_protests_hist_1w + log_neighbor_protests_hist_1w + log_riots_hist_1w + log_neighbor_riot_cells_hist_1w + grid_x + grid_y + sin_week + cos_week + C(year_cat)
+1,H2,target_protest_1w ~ log_peaceful_protests_hist_1w + log_nonpeaceful_protests_hist_1w + log_neighbor_peaceful_protests_hist_1w + log_neighbor_nonpeaceful_protests_hist_1w + log_riots_hist_1w + log_neighbor_riot_cells_hist_1w + grid_x + grid_y + sin_week + cos_week + C(year_cat)
+1,H3,target_local_riot_1w ~ log_local_nonpeaceful + log_local_peaceful + local_riot_now + log_local_riot_history_4w + grid_x + grid_y + sin_week + cos_week + C(year_cat)
+2,H1A/H1B,target_protest_2w ~ log_protests_hist_2w + log_neighbor_protests_hist_2w + log_riots_hist_2w + log_neighbor_riot_cells_hist_2w + grid_x + grid_y + sin_week + cos_week + C(year_cat)
+2,H2,target_protest_2w ~ log_peaceful_protests_hist_2w + log_nonpeaceful_protests_hist_2w + log_neighbor_peaceful_protests_hist_2w + log_neighbor_nonpeaceful_protests_hist_2w + log_riots_hist_2w + log_neighbor_riot_cells_hist_2w + grid_x + grid_y + sin_week + cos_week + C(year_cat)
+2,H3,target_local_riot_2w ~ log_local_nonpeaceful + log_local_peaceful + local_riot_now + log_local_riot_history_4w + grid_x + grid_y + sin_week + cos_week + C(year_cat)
+4,H1A/H1B,target_protest_4w ~ log_protests_hist_4w + log_neighbor_protests_hist_4w + log_riots_hist_4w + log_neighbor_riot_cells_hist_4w + grid_x + grid_y + sin_week + cos_week + C(year_cat)
+4,H2,target_protest_4w ~ log_peaceful_protests_hist_4w + log_nonpeaceful_protests_hist_4w + log_neighbor_peaceful_protests_hist_4w + log_neighbor_nonpeaceful_protests_hist_4w + log_riots_hist_4w + log_neighbor_riot_cells_hist_4w + grid_x + grid_y + sin_week + cos_week + C(year_cat)
+4,H3,target_local_riot_4w ~ log_local_nonpeaceful + log_local_peaceful + local_riot_now + log_local_riot_history_4w + grid_x + grid_y + sin_week + cos_week + C(year_cat)
