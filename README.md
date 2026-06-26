@@ -4,14 +4,14 @@ This repository contains a weekly spatiotemporal prediction pipeline for ACLED p
 
 ## Research Focus
 
-The project studies whether protests diffuse over time and space, whether peaceful and non-peaceful protests diffuse differently, and whether non-peaceful protests are followed by riots in the same country.
+The project studies whether recent protest activity improves prediction of future protest occurrence over time and space, whether peaceful protest histories have stronger predictive value than non-peaceful protest histories, and whether non-peaceful protest events improve prediction of subsequent riots in the same country.
 
 ## Hypotheses
 
-- **H1A Spatial diffusion:** protests in nearby grid cells raise protest risk in the focal cell, even after accounting for the focal cell's own 1-week, 2-week, and 1-month history.
-- **H1B Temporal diffusion:** protests in the focal cell in recent periods predict protest risk in the same cell in the next period.
-- **H2 Peaceful diffusion:** non-peaceful protests are less likely to diffuse than peaceful protests over space and time. Non-peaceful protests are defined as ACLED protest sub-event types `Protest with intervention` and `Excessive force against protesters`.
-- **H3 Protest escalation:** non-peaceful protest events are associated with a higher probability of riots in the same country in subsequent periods.
+- **H1A Spatial diffusion:** recent protest activity in neighboring 100 x 100 km grid cells is expected to improve prediction of protest occurrence in the focal grid cell in the following week, beyond the focal cell's own recent protest history, measured over 1-week, 2-week, and 1-month windows.
+- **H1B Temporal diffusion:** recent protest activity in the focal grid cell is expected to improve prediction of protest occurrence in the same grid cell in the following week.
+- **H2 Peaceful versus non-peaceful diffusion:** recent peaceful protest histories are expected to have stronger predictive value for future protest occurrence than recent non-peaceful protest histories, both within the focal grid cell and in neighboring grid cells. Non-peaceful protests are defined as ACLED protest sub-event types `Protest with intervention` and `Excessive force against protesters`.
+- **H3 Protest escalation:** higher levels of non-peaceful protest events, defined as ACLED sub-event types `Protest with intervention` and `Excessive force against protesters`, are expected to predict a higher probability of riots occurring in the same country in subsequent periods.
 
 ## Main Setup
 
@@ -78,7 +78,7 @@ The notebook avoids hard-coded local paths and expects the dataset to be inside 
 4. Creates 1-week, 2-week, and 4-week history windows for focal and neighboring grid cells.
 5. Trains and tests logistic regression and random forest models for next-week protest risk.
 6. Compares temporal-history models with spatial-neighbor models.
-7. Estimates standardized coefficients for peaceful versus non-peaceful diffusion.
+7. Estimates standardized coefficients for the predictive value of peaceful versus non-peaceful protest histories.
 8. Builds a country-week panel for H3 and models next-week riot risk.
 9. Saves tables, panels, and figures under `outputs/`.
 
@@ -117,6 +117,6 @@ The notebook avoids hard-coded local paths and expects the dataset to be inside 
 
 ## Notes
 
-This is a predictive and descriptive design, not a causal identification strategy. Evidence that history or neighboring-cell features improve prediction should be interpreted as evidence of temporal or spatial clustering in ACLED event data, not proof that one protest causes another event.
+This is a predictive and descriptive design, not a causal identification strategy. Evidence that history or neighboring-cell features improve prediction should be interpreted as evidence of predictive temporal or spatial clustering in ACLED event data, not proof that one protest causes another event.
 
 For H3, the country-week model is intentionally separate from the grid-cell model because the hypothesis concerns riots in the same country after non-peaceful protests.
